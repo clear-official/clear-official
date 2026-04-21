@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鑑定フローガイド | スタッフ共有版</title>
+    <title>鑑定ナレッジベース | Clear</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -12,6 +12,7 @@
         .copied { background-color: #eef2ff !important; color: #4f46e5 !important; }
         html { scroll-behavior: smooth; }
         .tab-active { border-bottom: 2px solid #4f46e5; color: #4f46e5; font-weight: bold; }
+        .step-card { scroll-margin-top: 100px; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 pb-20">
@@ -19,8 +20,8 @@
     <header class="bg-gradient-to-r from-indigo-900 to-purple-800 text-white p-6 shadow-md sticky top-0 z-40">
         <div class="flex justify-between items-start">
             <div>
-                <h1 class="text-xl font-bold mb-1">鑑定フローガイド</h1>
-                <p class="text-[10px] text-indigo-200 opacity-90 uppercase tracking-widest">Management Team Manual</p>
+                <h1 class="text-xl font-bold mb-1">Clear Knowledge Base</h1>
+                <p class="text-[10px] text-indigo-200 opacity-90 uppercase tracking-widest">Management Team Support</p>
             </div>
             <button onclick="toggleHelp()" class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
                 <i data-lucide="help-circle" class="w-5 h-5"></i>
@@ -28,96 +29,136 @@
         </div>
     </header>
 
-    <main class="px-4 py-6 max-w-md mx-auto" id="app-content">
+    <main class="px-4 py-6 max-w-md mx-auto">
         <div class="mb-8">
             <h2 class="text-[10px] font-black text-slate-400 mb-3 ml-1 uppercase tracking-widest flex justify-between">
-                BUSINESS FLOW
+                NAVIGATION
                 <span>Swipe →</span>
             </h2>
             <div class="flex overflow-x-auto pb-4 gap-2 snap-x hide-scrollbar" id="flow-steps">
                 </div>
         </div>
 
-        <div class="space-y-8" id="flow-details">
+        <div class="space-y-10" id="flow-details">
             </div>
     </main>
-
-    <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
-        <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold text-slate-800">ツールの使い方</h3>
-                    <button onclick="toggleHelp()" class="text-slate-400 hover:text-slate-600">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                <div class="space-y-4 text-sm text-slate-600">
-                    <p>・<b>タブ選択：</b> 鑑定士さんのキャラに合わせて「標準・親身・厳粛」を選べます。</p>
-                    <p>・<b>一言コラム：</b> 各ステップの最後にスタッフからのTipsを掲載しています。</p>
-                </div>
-                <button onclick="toggleHelp()" class="w-full mt-6 py-3 bg-indigo-600 text-white rounded-xl font-bold">了解しました</button>
-            </div>
-        </div>
-    </div>
 
     <script>
         const flowData = [
             {
                 id: 1,
-                icon: "search",
-                iconColor: "text-indigo-500",
-                title: "初回ヒアリング",
-                point: "基本情報（性格・感情タイプ）を一度に聞くことで、お客様の負担を減らしつつパーソナライズの準備をします。",
-                good: "具体的な選択肢（AかBかなど）を出し、答えやすくする",
-                bad: "一問一答形式で何度も質問を繰り返し、離脱させる",
-                advice: "一度に聞く項目は3つ程度がベストです。多すぎると回答が面倒になり、少なすぎると鑑定の深みが出せません。",
+                icon: "mail",
+                iconColor: "text-blue-500",
+                title: "アポメ返信",
+                point: "お客様の期待値を最大化し、スムーズにヒアリングへ移行するための最初の接点です。",
+                good: "即レスを心がけ、鑑定への期待感を高める一言を添える",
+                bad: "事務的すぎて冷たい印象を与えてしまう",
+                advice: "「あなた専用の鑑定を準備しています」という特別感を出すのがコツです。",
                 variants: [
-                    { type: "標準", text: "ご相談ありがとうございます。まずはあなた様を深く読み解くために、いくつか教えてくださいね。\n\n①周囲からはどんな性格と言われますか？\n②不安な時は誰かに話すタイプですか？\n③恋愛では「安心感」と「刺激」どちらを重視しますか？" },
-                    { type: "親身", text: "ご相談ありがとうございます！✨\nより深く視させていただくために、3つだけ教えてください🪄\n①周りからどんな性格って言われることが多いかな？☺️\n②不安な時はすぐ誰かに相談するタイプ？💭\n③恋愛は「ドキドキ」と「安心感」、どっちが好きですか？🎀" },
-                    { type: "厳粛", text: "ご相談を承りました。鑑定の精度を高めるため、以下の3点についてお聞かせください。\n\n1. 客観的に見たご自身の性格傾向\n2. 悩みが生じた際の感情の処理方法\n3. 恋愛において最も重要視する価値基準" }
+                    { type: "標準", text: "ご相談依頼ありがとうございます。お気持ち、しっかりと受け止めました。精一杯鑑定させていただきますので、まずはいくつかお話を伺わせてくださいね。" },
+                    { type: "親身", text: "ご依頼ありがとうございます！✨お力になれるご縁をいただけて嬉しいです🥰心を込めて視させていただきますので、まずはリラックスしてお話聞かせてくださいね🌿🪄" },
+                    { type: "厳粛", text: "この度はご相談いただき光栄です。貴殿の現状を深く読み解き、最善の道を示させていただきます。鑑定に先立ち、数点確認させていただきたく存じます。" }
                 ]
             },
             {
                 id: 2,
-                icon: "sparkles",
-                iconColor: "text-amber-500",
-                title: "初回鑑定（性格・現状）",
-                point: "「この人は分かってくれる」という信頼感を構築。全てを話さず、相手側の心の領域へ繋ぐ架け橋にします。",
-                good: "性格の読み解きから入り、現状への共感を示す",
-                bad: "いきなり「相手の気持ち」を断定し、信頼の土台を作らない",
-                advice: "「当たっているかどうか」よりも「自分のことを理解してくれている」と感じてもらう共感の言葉を1文添えるだけでリピート率が変わります。",
+                icon: "search",
+                iconColor: "text-indigo-500",
+                title: "初回ヒアリング",
+                point: "性格や恋愛傾向を把握し、鑑定をパーソナライズするための重要なステップです。",
+                good: "選択肢を提示し、お客様が答えやすい環境を作る",
+                bad: "一問一答を繰り返し、お客様を疲れさせてしまう",
+                advice: "質問は3つに絞り、最後に「これだけで大丈夫ですよ」と安心させてあげましょう。",
                 variants: [
-                    { type: "標準", text: "鑑定の結果、あなた様は〇〇な性質をお持ちだと出ました。そのため、今は△△な状況に陥りやすいようです。お辛い時期でしたね。\n\n次は、お相手様が今あなたをどう想っているかを読み解いていきます。続けて視ていきますか？" },
-                    { type: "親身", text: "お待たせしました🕊️\n鑑定の結果、あなた様はとっても〇〇な優しい方だと出ています。だからこそ、今の△△な状況は本当に胸が痛みますよね…🥲\n\nお相手様の今の本音についても詳しく視ていけますが、このまま進めても大丈夫でしょうか？🪄" },
-                    { type: "厳粛", text: "貴殿の資質は〇〇と出ており、現在の停滞は△△に起因する可能性が高いです。お心当たりはございますか？\n\n次は、最重要事項である「相手方の深層心理」について精査いたします。準備が整いましたらお知らせください。" }
+                    { type: "標準", text: "より深く視るために教えてください。\n①周囲から見た性格は？\n②悩みは溜め込む派？話す派？\n③恋愛で重視するのは安心？刺激？\nお返事お待ちしております。" },
+                    { type: "親身", text: "奈胡です🌸もっと深く視ていきたいので、3つだけ教えてくださいね✨\n①周りからはどんな性格って言われる？☺️\n②不安な時は誰かにすぐ話す方かな？💭\n③恋愛は「ドキドキ」と「安心感」どっちが好き？🎀" },
+                    { type: "厳粛", text: "鑑定精度向上のため、貴殿の「客観的性格」「ストレス時の行動傾向」「恋愛における絶対的な価値基準」を教示ください。これを基に深く精査いたします。" }
                 ]
             },
             {
                 id: 3,
+                icon: "sparkles",
+                iconColor: "text-amber-500",
+                title: "初回鑑定",
+                point: "性格診断や現状分析を伝え、「この先生は分かっている」という信頼の土台を作ります。",
+                good: "現状への深い共感を示し、次の「相手の気持ち」への期待を繋ぐ",
+                bad: "1回で全てを話しきり、リピートの余地をなくす",
+                advice: "性格の裏付けを伝えることで「なぜ当たっているのか」の説得力が増します。",
+                variants: [
+                    { type: "標準", text: "鑑定の結果、あなた様は〇〇な性質をお持ちです。そのため今は△△な状況で、お辛い時期ですね。次は、お相手様の今の本音を深く読み解きます。続けてもよろしいですか？" },
+                    { type: "親身", text: "お待たせしました🕊️鑑定の結果、あなた様は本当に〇〇な優しい方だと出ています。だからこそ、今の△△な状況は胸が痛みますよね…🥲次はお相手様の「本心」を覗いてみましょうか？✨" },
+                    { type: "厳粛", text: "貴殿の資質を鑑定したところ、〇〇という特性が強く出ております。現状の停滞は△△が影響しているようです。ここからは対象者の深層心理と今後の展開を詳述いたします。" }
+                ]
+            },
+            {
+                id: 4,
                 icon: "message-circle",
                 iconColor: "text-teal-500",
                 title: "鑑定後ヒアリング",
-                point: "鑑定結果を受けた「今の反応」を確認。自然な対話の中で、2回目鑑定（お相手の心）への期待を高めます。",
-                good: "「当てはまる点はありましたか？」と、相手の言葉を引き出す",
-                bad: "結果を投げっぱなしにして、お客様の反応を無視する",
-                advice: "ここでABテストのような選択肢（相手の本音を知りたいか、未来を知りたいか等）を出すと、お客様が「自分で選んだ」という感覚になり、2回目鑑定への納得感が上がります。",
+                point: "鑑定後の反応を確認し、お客様の「今一番知りたいこと」を再定義します。",
+                good: "お客様の感想を引き出し、2回目鑑定の内容をカスタマイズする",
+                bad: "結果を伝えて満足し、お客様を放置してしまう",
+                advice: "「当てはまっているか」を確認することで、お客様の自己開示がさらに進みます。",
                 variants: [
-                    { type: "標準", text: "先ほどの鑑定内容で、心当たりのある部分はありましたか？\n\n次は「お相手側の心の領域」を深掘りします。特に気になるものはどれでしょうか？\nA：今の私への正直な気持ち\nB：復縁の可能性の有無\nC：関係が動く具体的な時期" },
-                    { type: "親身", text: "今の結果を聞いてみて、どう感じましたか？☺️💭\n\n次は一番気になる、お相手様の「本心」を覗いてみようと思います🪄\n特にどれを一番知りたいですか？\nA：私のこと、まだ好き？\nB：これから連絡は来る？\nC：やり直せるチャンスはある？" },
-                    { type: "厳粛", text: "これまでの結果を受けて、現状と相違ないかご確認ください。確認後、さらに深層へ踏み込みます。\n\n優先して解明すべき事柄を以下より選択してください。\n1. 対象者の現在の意識推移\n2. 再構築の蓋然性\n3. 事態が好転する具体的時期" }
+                    { type: "標準", text: "先ほどの内容で、心当たりのある部分はありましたか？次は「お相手側の領域」を深掘りします。特に気になるものはありますか？（A：本音、B：復縁、C：時期）" },
+                    { type: "親身", text: "今の結果を聞いてみて、どう感じましたか？☺️💭「当たってる！」と思う部分はありましたか？🪄次は一番気になる、お相手様の「本心」を覗いてみましょう！特にどれを詳しく知りたいかな？✨" },
+                    { type: "厳粛", text: "これまでの鑑定結果に、現状との相違がないかご確認ください。確認後、さらに深層へ踏み込みます。優先して解明すべき事柄（本音・可能性・時期）を選択してください。" }
+                ]
+            },
+            {
+                id: 5,
+                icon: "eye",
+                iconColor: "text-purple-500",
+                title: "2回目鑑定",
+                point: "お相手の気持ちや未来の展開など、核心部分を伝えます。",
+                good: "「4つの柱（肯定・課題・希望・誘導）」を意識して構成する",
+                bad: "悪い結果をそのまま伝えて、お客様を絶望させて終わる",
+                advice: "悪い結果でも「こう動けば変わる」という希望を必ずセットで伝えましょう。",
+                variants: [
+                    { type: "標準", text: "お相手様ですが、完全に離れたわけではなく「迷い」の中にいます。今は距離を置くのが得策ですが、動き方次第で来月には好転の兆しがあります。詳しくアドバイスしましょうか？" },
+                    { type: "親身", text: "お相手様、まだあなたのことを「気にして」いますよ🪄ただ今は少し迷いがあるみたい💭このまま放っておくと距離が空くけど、動き方次第でガラッと変わります！✨詳しい方法、お伝えしますね🌿" },
+                    { type: "厳粛", text: "対象者の意識には、貴殿への執着が一部残留しています。ただし現状の振る舞いでは離反を招く恐れがあります。好転のための具体的戦略を構築しました。受諾されますか？" }
+                ]
+            },
+            {
+                id: 6,
+                icon: "calendar-clock",
+                iconColor: "text-orange-500",
+                title: "締めの言葉",
+                point: "当日の感謝を伝えつつ、次回の相談時期を具体的に示唆します。",
+                good: "「次回はこのタイミングで視ましょう」とリピートの目安を提示する",
+                bad: "「またいつでもどうぞ」と曖昧に終わらせてしまう",
+                advice: "「状況が動いた時」だけでなく「〇日後」と数字を出すと戻ってきやすくなります。",
+                variants: [
+                    { type: "標準", text: "本日はありがとうございました。状況は常に動きますので、1週間後くらいにまた変化を視ていきましょう。応援しています。" },
+                    { type: "親身", text: "今日はたくさんお話しできて良かったです🥰不安になったらまたいつでも頼ってくださいね🌿10日後くらいに流れがまた変わるので、その頃にまたお話ししましょう✨待ってますね🌙" },
+                    { type: "厳粛", text: "本日の鑑定は以上となります。運命の波形は数日で変動するため、次回の観測は〇日後が最適です。その際の推移を基に、最終的な決断を下しましょう。" }
+                ]
+            },
+            {
+                id: 7,
+                icon: "heart-handshake",
+                iconColor: "text-rose-500",
+                title: "アフターフォロー",
+                point: "鑑定の翌日以降に送り、お客様との繋がりを維持します。",
+                good: "営業感を消し、純粋にお客様を気遣う内容にする",
+                bad: "定型文の営業メールのような印象を与えてしまう",
+                advice: "「昨日お話しした〇〇ですが、その後いかがですか？」とパーソナルな話題に触れましょう。",
+                variants: [
+                    { type: "標準", text: "〇〇様、こんにちは。昨日の鑑定後、少しはお気持ち落ち着かれましたか？何か変化があれば、いつでも教えてくださいね。" },
+                    { type: "親身", text: "〇〇様、こんにちは🌿昨日お話しした「お相手様の気持ち」、その後どうかなって気になっていました🥲少しでも前向きになれていたら嬉しいです✨いつでもここにいるからね🌷" },
+                    { type: "厳粛", text: "〇〇様、その後の経過はいかがでしょうか。鑑定で示した「兆し」に変化はありませんか。僅かな違和感でも、重大な転換点となる場合がございます。ご報告をお待ちしております。" }
                 ]
             }
         ];
 
-        const steps = ['アポメ返信', '初回ヒアリング', '初回鑑定', '鑑定後ヒア', '2回目鑑定', '締めの言葉', 'アフター'];
-        const activeSteps = [1, 2, 3];
+        const steps = ['アポメ', 'ヒアリング', '初回鑑定', '鑑定後ヒア', '2回目鑑定', '締め', 'アフター'];
 
         function renderApp() {
             const flowStepsContainer = document.getElementById('flow-steps');
             steps.forEach((step, idx) => {
-                const isActive = activeSteps.includes(idx);
-                const colorClass = isActive ? 'bg-indigo-600 text-white font-bold' : 'bg-slate-200 text-slate-400 opacity-60';
-                let html = `<div class="flex-shrink-0 flex items-center snap-center"><div class="px-4 py-2 rounded-xl text-[11px] whitespace-nowrap ${colorClass}">${step}</div>`;
+                const stepId = idx + 1;
+                let html = `<div class="flex-shrink-0 flex items-center snap-center"><a href="#step-${stepId}" class="px-4 py-2 rounded-xl text-[11px] whitespace-nowrap bg-indigo-600 text-white font-bold shadow-md">${step}</a>`;
                 if (idx < steps.length - 1) html += `<i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 mx-1"></i>`;
                 html += `</div>`;
                 flowStepsContainer.insertAdjacentHTML('beforeend', html);
@@ -126,9 +167,9 @@
             const flowDetailsContainer = document.getElementById('flow-details');
             flowData.forEach(step => {
                 const sectionHtml = `
-                    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div id="step-${step.id}" class="step-card bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
                         <div class="flex items-center gap-4 p-5 border-b border-slate-50 bg-slate-50/50">
-                            <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 text-indigo-500">
+                            <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 ${step.iconColor}">
                                 <i data-lucide="${step.icon}" class="w-6 h-6"></i>
                             </div>
                             <h2 class="text-lg font-bold text-slate-800">${step.title}</h2>
@@ -141,11 +182,11 @@
 
                             <div class="grid grid-cols-2 gap-3 font-bold">
                                 <div class="bg-emerald-50/50 p-3 rounded-2xl border border-emerald-100/50 text-center">
-                                    <div class="text-[9px] text-emerald-600 mb-1 tracking-tighter">GOOD</div>
+                                    <div class="text-[9px] text-emerald-600 mb-1 tracking-tighter uppercase">Good Case</div>
                                     <p class="text-[10px] text-slate-700 leading-tight">${step.good}</p>
                                 </div>
                                 <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100/50 text-center">
-                                    <div class="text-[9px] text-rose-600 mb-1 tracking-tighter">BAD</div>
+                                    <div class="text-[9px] text-rose-600 mb-1 tracking-tighter uppercase">Bad Case</div>
                                     <p class="text-[10px] text-slate-700 leading-tight">${step.bad}</p>
                                 </div>
                             </div>
@@ -163,10 +204,10 @@
                                 </div>
                             </div>
 
-                            <div class="mt-4 p-4 bg-amber-50/50 rounded-2xl border border-amber-100/50 relative">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
-                                    <span class="text-[10px] font-black text-amber-600 uppercase tracking-widest">Management Advice</span>
+                            <div class="mt-4 p-4 bg-amber-50/50 rounded-2xl border border-amber-100/50">
+                                <div class="flex items-center gap-2 mb-2 text-amber-600">
+                                    <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                                    <span class="text-[10px] font-black uppercase tracking-widest">Management Advice</span>
                                 </div>
                                 <p class="text-[12px] text-slate-600 leading-relaxed">${step.advice}</p>
                             </div>
@@ -182,9 +223,9 @@
             return `
                 <div class="relative border border-slate-100 rounded-2xl bg-slate-50/30 overflow-hidden">
                     <div class="p-4 text-[13px] text-slate-700 leading-relaxed whitespace-pre-wrap">${variant.text}</div>
-                    <button onclick="copyText(this, \`${variant.text.replace(/`/g, '\\`')}\`)" class="w-full flex items-center justify-center gap-2 py-3 bg-white border-t border-slate-100 text-indigo-600 font-bold text-xs">
+                    <button onclick="copyText(this, \`${variant.text.replace(/`/g, '\\`')}\`)" class="w-full flex items-center justify-center gap-2 py-3 bg-white border-t border-slate-100 text-indigo-600 font-bold text-xs active:bg-indigo-50">
                         <i data-lucide="copy" class="w-4 h-4"></i>
-                        <span>コピーする</span>
+                        <span>例文をコピー</span>
                     </button>
                 </div>
             `;
@@ -219,10 +260,21 @@
         }
 
         function toggleHelp() {
-            document.getElementById('help-modal').classList.toggle('hidden');
+            const modal = document.getElementById('help-modal');
+            modal.classList.toggle('hidden');
         }
 
         document.addEventListener('DOMContentLoaded', renderApp);
     </script>
+
+    <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
+        <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl p-6 text-center">
+            <h3 class="text-lg font-bold mb-4">Clearツールの使い方</h3>
+            <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                全7ステップの鑑定フローを網羅しています。鑑定士さんのキャラに合わせて「標準・親身・厳粛」を切り替えてコピーしてください。
+            </p>
+            <button onclick="toggleHelp()" class="w-full py-3 bg-indigo-600 text-white rounded-xl font-bold">了解しました</button>
+        </div>
+    </div>
 </body>
 </html>
