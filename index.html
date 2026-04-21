@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鑑定フローガイド | スタッフ共有版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .copied { background-color: #eef2ff !important; color: #4f46e5 !important; }
+        html { scroll-behavior: smooth; }
+        .tab-active { border-bottom: 2px solid #4f46e5; color: #4f46e5; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 pb-20">
+
+    <header class="bg-gradient-to-r from-indigo-900 to-purple-800 text-white p-6 shadow-md sticky top-0 z-40">
+        <div class="flex justify-between items-start">
+            <div>
+                <h1 class="text-xl font-bold mb-1">鑑定フローガイド</h1>
+                <p class="text-[10px] text-indigo-200 opacity-90 uppercase tracking-widest">Management Team Manual</p>
+            </div>
+            <button onclick="toggleHelp()" class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                <i data-lucide="help-circle" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="px-4 py-6 max-w-md mx-auto" id="app-content">
+        <div class="mb-8">
+            <h2 class="text-[10px] font-black text-slate-400 mb-3 ml-1 uppercase tracking-widest flex justify-between">
+                BUSINESS FLOW
+                <span>Swipe →</span>
+            </h2>
+            <div class="flex overflow-x-auto pb-4 gap-2 snap-x hide-scrollbar" id="flow-steps">
+                </div>
+        </div>
+
+        <div class="space-y-8" id="flow-details">
+            </div>
+    </main>
+
+    <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
+        <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-slate-800">ツールの使い方</h3>
+                    <button onclick="toggleHelp()" class="text-slate-400 hover:text-slate-600">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <div class="space-y-4 text-sm text-slate-600">
+                    <p>・<b>タブ選択：</b> 鑑定士さんのキャラに合わせて「標準・親身・厳粛」を選べます。</p>
+                    <p>・<b>一言コラム：</b> 各ステップの最後にスタッフからのTipsを掲載しています。</p>
+                </div>
+                <button onclick="toggleHelp()" class="w-full mt-6 py-3 bg-indigo-600 text-white rounded-xl font-bold">了解しました</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const flowData = [
+            {
+                id: 1,
+                icon: "search",
+                iconColor: "text-indigo-500",
+                title: "初回ヒアリング",
+                point: "基本情報（性格・感情タイプ）を一度に聞くことで、お客様の負担を減らしつつパーソナライズの準備をします。",
+                good: "具体的な選択肢（AかBかなど）を出し、答えやすくする",
+                bad: "一問一答形式で何度も質問を繰り返し、離脱させる",
+                advice: "一度に聞く項目は3つ程度がベストです。多すぎると回答が面倒になり、少なすぎると鑑定の深みが出せません。",
+                variants: [
+                    { type: "標準", text: "ご相談ありがとうございます。まずはあなた様を深く読み解くために、いくつか教えてくださいね。\n\n①周囲からはどんな性格と言われますか？\n②不安な時は誰かに話すタイプですか？\n③恋愛では「安心感」と「刺激」どちらを重視しますか？" },
+                    { type: "親身", text: "ご相談ありがとうございます！✨\nより深く視させていただくために、3つだけ教えてください🪄\n①周りからどんな性格って言われることが多いかな？☺️\n②不安な時はすぐ誰かに相談するタイプ？💭\n③恋愛は「ドキドキ」と「安心感」、どっちが好きですか？🎀" },
+                    { type: "厳粛", text: "ご相談を承りました。鑑定の精度を高めるため、以下の3点についてお聞かせください。\n\n1. 客観的に見たご自身の性格傾向\n2. 悩みが生じた際の感情の処理方法\n3. 恋愛において最も重要視する価値基準" }
+                ]
+            },
+            {
+                id: 2,
+                icon: "sparkles",
+                iconColor: "text-amber-500",
+                title: "初回鑑定（性格・現状）",
+                point: "「この人は分かってくれる」という信頼感を構築。全てを話さず、相手側の心の領域へ繋ぐ架け橋にします。",
+                good: "性格の読み解きから入り、現状への共感を示す",
+                bad: "いきなり「相手の気持ち」を断定し、信頼の土台を作らない",
+                advice: "「当たっているかどうか」よりも「自分のことを理解してくれている」と感じてもらう共感の言葉を1文添えるだけでリピート率が変わります。",
+                variants: [
+                    { type: "標準", text: "鑑定の結果、あなた様は〇〇な性質をお持ちだと出ました。そのため、今は△△な状況に陥りやすいようです。お辛い時期でしたね。\n\n次は、お相手様が今あなたをどう想っているかを読み解いていきます。続けて視ていきますか？" },
+                    { type: "親身", text: "お待たせしました🕊️\n鑑定の結果、あなた様はとっても〇〇な優しい方だと出ています。だからこそ、今の△△な状況は本当に胸が痛みますよね…🥲\n\nお相手様の今の本音についても詳しく視ていけますが、このまま進めても大丈夫でしょうか？🪄" },
+                    { type: "厳粛", text: "貴殿の資質は〇〇と出ており、現在の停滞は△△に起因する可能性が高いです。お心当たりはございますか？\n\n次は、最重要事項である「相手方の深層心理」について精査いたします。準備が整いましたらお知らせください。" }
+                ]
+            },
+            {
+                id: 3,
+                icon: "message-circle",
+                iconColor: "text-teal-500",
+                title: "鑑定後ヒアリング",
+                point: "鑑定結果を受けた「今の反応」を確認。自然な対話の中で、2回目鑑定（お相手の心）への期待を高めます。",
+                good: "「当てはまる点はありましたか？」と、相手の言葉を引き出す",
+                bad: "結果を投げっぱなしにして、お客様の反応を無視する",
+                advice: "ここでABテストのような選択肢（相手の本音を知りたいか、未来を知りたいか等）を出すと、お客様が「自分で選んだ」という感覚になり、2回目鑑定への納得感が上がります。",
+                variants: [
+                    { type: "標準", text: "先ほどの鑑定内容で、心当たりのある部分はありましたか？\n\n次は「お相手側の心の領域」を深掘りします。特に気になるものはどれでしょうか？\nA：今の私への正直な気持ち\nB：復縁の可能性の有無\nC：関係が動く具体的な時期" },
+                    { type: "親身", text: "今の結果を聞いてみて、どう感じましたか？☺️💭\n\n次は一番気になる、お相手様の「本心」を覗いてみようと思います🪄\n特にどれを一番知りたいですか？\nA：私のこと、まだ好き？\nB：これから連絡は来る？\nC：やり直せるチャンスはある？" },
+                    { type: "厳粛", text: "これまでの結果を受けて、現状と相違ないかご確認ください。確認後、さらに深層へ踏み込みます。\n\n優先して解明すべき事柄を以下より選択してください。\n1. 対象者の現在の意識推移\n2. 再構築の蓋然性\n3. 事態が好転する具体的時期" }
+                ]
+            }
+        ];
+
+        const steps = ['アポメ返信', '初回ヒアリング', '初回鑑定', '鑑定後ヒア', '2回目鑑定', '締めの言葉', 'アフター'];
+        const activeSteps = [1, 2, 3];
+
+        function renderApp() {
+            const flowStepsContainer = document.getElementById('flow-steps');
+            steps.forEach((step, idx) => {
+                const isActive = activeSteps.includes(idx);
+                const colorClass = isActive ? 'bg-indigo-600 text-white font-bold' : 'bg-slate-200 text-slate-400 opacity-60';
+                let html = `<div class="flex-shrink-0 flex items-center snap-center"><div class="px-4 py-2 rounded-xl text-[11px] whitespace-nowrap ${colorClass}">${step}</div>`;
+                if (idx < steps.length - 1) html += `<i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 mx-1"></i>`;
+                html += `</div>`;
+                flowStepsContainer.insertAdjacentHTML('beforeend', html);
+            });
+
+            const flowDetailsContainer = document.getElementById('flow-details');
+            flowData.forEach(step => {
+                const sectionHtml = `
+                    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                        <div class="flex items-center gap-4 p-5 border-b border-slate-50 bg-slate-50/50">
+                            <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 text-indigo-500">
+                                <i data-lucide="${step.icon}" class="w-6 h-6"></i>
+                            </div>
+                            <h2 class="text-lg font-bold text-slate-800">${step.title}</h2>
+                        </div>
+                        
+                        <div class="p-5 space-y-6">
+                            <div class="bg-indigo-50/40 rounded-2xl p-4 border border-indigo-100/30">
+                                <p class="text-[13px] text-slate-600 leading-relaxed font-medium">${step.point}</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 font-bold">
+                                <div class="bg-emerald-50/50 p-3 rounded-2xl border border-emerald-100/50 text-center">
+                                    <div class="text-[9px] text-emerald-600 mb-1 tracking-tighter">GOOD</div>
+                                    <p class="text-[10px] text-slate-700 leading-tight">${step.good}</p>
+                                </div>
+                                <div class="bg-rose-50/50 p-3 rounded-2xl border border-rose-100/50 text-center">
+                                    <div class="text-[9px] text-rose-600 mb-1 tracking-tighter">BAD</div>
+                                    <p class="text-[10px] text-slate-700 leading-tight">${step.bad}</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-2">
+                                <div class="flex border-b border-slate-100 mb-4">
+                                    ${step.variants.map((v, i) => `
+                                        <button onclick="switchTab(this, ${step.id}, ${i})" class="flex-1 py-2 text-xs transition-all ${i === 0 ? 'tab-active' : 'text-slate-400'}">
+                                            ${v.type}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                <div id="variant-content-${step.id}">
+                                    ${renderVariant(step.id, step.variants[0])}
+                                </div>
+                            </div>
+
+                            <div class="mt-4 p-4 bg-amber-50/50 rounded-2xl border border-amber-100/50 relative">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
+                                    <span class="text-[10px] font-black text-amber-600 uppercase tracking-widest">Management Advice</span>
+                                </div>
+                                <p class="text-[12px] text-slate-600 leading-relaxed">${step.advice}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                flowDetailsContainer.insertAdjacentHTML('beforeend', sectionHtml);
+            });
+            lucide.createIcons();
+        }
+
+        function renderVariant(stepId, variant) {
+            return `
+                <div class="relative border border-slate-100 rounded-2xl bg-slate-50/30 overflow-hidden">
+                    <div class="p-4 text-[13px] text-slate-700 leading-relaxed whitespace-pre-wrap">${variant.text}</div>
+                    <button onclick="copyText(this, \`${variant.text.replace(/`/g, '\\`')}\`)" class="w-full flex items-center justify-center gap-2 py-3 bg-white border-t border-slate-100 text-indigo-600 font-bold text-xs">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>コピーする</span>
+                    </button>
+                </div>
+            `;
+        }
+
+        function switchTab(btn, stepId, variantIdx) {
+            const tabs = btn.parentElement.querySelectorAll('button');
+            tabs.forEach((t, i) => i === variantIdx ? t.classList.add('tab-active') : t.classList.remove('tab-active', 'text-slate-400'));
+            tabs.forEach((t, i) => i !== variantIdx && t.classList.add('text-slate-400'));
+            const step = flowData.find(s => s.id === stepId);
+            document.getElementById(`variant-content-${stepId}`).innerHTML = renderVariant(stepId, step.variants[variantIdx]);
+            lucide.createIcons();
+        }
+
+        function copyText(btnElement, text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            const originalContent = btnElement.innerHTML;
+            btnElement.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>コピー完了！</span>`;
+            btnElement.classList.add('bg-indigo-600', 'text-white');
+            lucide.createIcons();
+            setTimeout(() => {
+                btnElement.innerHTML = originalContent;
+                btnElement.classList.remove('bg-indigo-600', 'text-white');
+                lucide.createIcons();
+            }, 2000);
+        }
+
+        function toggleHelp() {
+            document.getElementById('help-modal').classList.toggle('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderApp);
+    </script>
+</body>
+</html>
