@@ -35,16 +35,16 @@
                 これだけ意識！成功の鉄則
             </h2>
             <ul class="text-[11px] space-y-2 text-amber-900/80">
-                <li class="flex items-start gap-2"><span>・</span><b>レスは即レス：</b>相談時が悩みのピークです</li>
-                <li class="flex items-start gap-2"><span>・</span><b>短文ラリー：</b>長文は圧迫感を与えます</li>
-                <li class="flex items-start gap-2"><span>・</span><b>ヒアリング優先：</b>すぐ占うより状況を知ることが信頼に繋がります</li>
+                <li class="flex items-start gap-2"><span>・</span><b>レスは即レス：</b>相談時が一番悩んでいる時です</li>
+                <li class="flex items-start gap-2"><span>・</span><b>短い文章で：</b>長すぎると読むのが大変になります</li>
+                <li class="flex items-start gap-2"><span>・</span><b>まずは話を聞く：</b>すぐに占うより、状況を知ることが大事です</li>
             </ul>
         </div>
 
         <div class="mb-8">
             <h2 class="text-[10px] font-black text-slate-400 mb-3 ml-1 uppercase tracking-widest flex justify-between">
                 メニュー
-                <span>スワイプ →</span>
+                <span>横にスワイプ →</span>
             </h2>
             <div class="flex overflow-x-auto pb-4 gap-2 snap-x hide-scrollbar" id="flow-steps"></div>
         </div>
@@ -53,16 +53,15 @@
     </main>
 
     <script>
-        // アイコン名と表現（難しい言葉）を修正
         const flowData = [
             {
                 id: 1,
-                icon: "send",
-                iconColor: "text-blue-500",
+                emoji: "✉️",
+                iconColor: "bg-blue-50 text-blue-500",
                 title: "アポメ返信",
-                point: "期待を高めて、スムーズにお話を聞く流れを作るための接点です。",
-                good: "即レスを徹底し、悩みに寄り添う一言を添える",
-                bad: "事務的すぎて冷たい、返信が遅い",
+                point: "期待を高めて、スムーズにお話を聞く流れを作るための返信です。",
+                good: "すぐに返信し、悩みに寄り添う一言を添える",
+                bad: "事務的で冷たい、返信が遅い",
                 advice: "短いやり取りを意識！話しやすい雰囲気を作るのがコツです。",
                 variants: [
                     { type: "標準", text: "ご相談ありがとうございます。\nお気持ち、しっかりと受け止めました。\n\n精一杯鑑定させていただきますので、まずはいくつかお話を伺わせてくださいね。" },
@@ -72,13 +71,13 @@
             },
             {
                 id: 2,
-                icon: "message-square",
-                iconColor: "text-indigo-500",
+                emoji: "💬",
+                iconColor: "bg-indigo-50 text-indigo-500",
                 title: "初回ヒアリング",
-                point: "性格や恋愛の傾向を知ることで、その人に合ったアドバイスができ、途中でやめてしまうのを防げます。",
-                good: "状況や悩みを整理しやすいように、具体的な質問をする",
-                bad: "バラバラに何度も質問して、相手に負担をかける",
-                advice: "質問をまとめて聞くことで、お客様が返信する手間を減らします。",
+                point: "性格や好みを先に聞くことで、その人にピッタリな鑑定ができます。",
+                good: "状況や悩みを整理しやすいように、分かりやすく質問する",
+                bad: "バラバラに何度も質問して、相手を疲れさせる",
+                advice: "質問をまとめて聞くことで、お客様が返す手間を減らしてあげましょう。",
                 variants: [
                     { type: "標準", text: "ご相談ありがとうございます！\nより深く視るために、まずは貴方様ご自身の性格や恋愛傾向について、3つ教えていただけますか？\n\n①周囲からはどのような性格だと言われる？\n②嬉しい/不安なことは、誰かにすぐ話す派？それとも溜め込みやすい？\n③恋愛では「安心感・安定」と「ときめき・刺激」どちらを重視する？" },
                     { type: "親身", text: "ご依頼ありがとうございます✨\nお力になれるよう、まずは3つだけ教えてね☺️💭\n\n①周りからはどんな性格って言われることが多い？🌷\n②不安な時は誰かにすぐ話すタイプかな？それとも一人で抱えちゃう？🧸\n③恋愛は「安心感」と「ドキドキ」どっちが好きかな？🪄" },
@@ -87,13 +86,13 @@
             },
             {
                 id: 3,
-                icon: "crystal-ball", // 水晶玉アイコンに変更
-                iconColor: "text-amber-500",
+                emoji: "🔮",
+                iconColor: "bg-amber-50 text-amber-600",
                 title: "初回鑑定（STEP1）",
-                point: "まずは「今の状況」だけを伝えます。小出しにすることで信頼を得て、次に繋げます。",
-                good: "今の状況を深掘りし、「相手の気持ち」を知りたくなるように伝える",
+                point: "まずは「今の状況」だけを伝えます。少しずつ話して信頼してもらいましょう。",
+                good: "今の状況を詳しく伝え、「相手の気持ち」も知りたくなるようにする",
                 bad: "相手の気持ちまで一気に全部話してしまう",
-                advice: "有料メッセージでは句読点や絵文字を控えめに。ポイント内鑑定（短文すぎる鑑定）は避け、150〜300文字程度を目安にしましょう。",
+                advice: "150〜300文字くらいが目安。短すぎず、丁寧な言葉を選びましょう。",
                 variants: [
                     { type: "標準", text: "情報をありがとうございます。\n今から鑑定に入りますので、リラックスしてお待ちくださいね。\n\n鑑定の結果、あなた様は〇〇な性質をお持ちです。そのため今は△△な状況で、お辛い時期ですね。\n\n次は、お相手様の今の本音を深く読み解きます。続けてもよろしいですか？" },
                     { type: "親身", text: "教えてくれてありがとう✨\n今から鑑定に入りますね🪄少しの間、肩の力を抜いて待っていてください🌿\n\n鑑定したところ、あなた様は本当に〇〇な優しい方だと出ています。だからこそ、今の△△な状況は胸が痛みますよね…🥲\n\n次はお相手様の「本心」を覗いてみましょうか？✨" },
@@ -102,13 +101,13 @@
             },
             {
                 id: 4,
-                icon: "help-circle",
-                iconColor: "text-teal-500",
+                emoji: "❓",
+                iconColor: "bg-teal-50 text-teal-500",
                 title: "鑑定後ヒアリング",
-                point: "結果を伝えた後の反応を確認します。相手の心の中を占う前の準備段階です。",
-                good: "占いの結果について質問し、会話が続きやすいようにする",
-                bad: "「頑張ってください」だけで終わらせてしまう",
-                advice: "「心当たりはありますか？」と聞くことで、自然と会話が続きます。",
+                point: "鑑定を伝えた後の反応を聞きます。次のステップに進むための準備です。",
+                good: "「当たっている部分はありますか？」と聞き、会話を続ける",
+                bad: "「応援しています」だけで終わらせてしまう",
+                advice: "質問を投げかけることで、お客様が次の鑑定を頼みやすくなります。",
                 variants: [
                     { type: "標準", text: "先ほどの内容で、心当たりのある部分はありましたか？\n（例：連絡を送りすぎてしまう、等）\n\nここから先はお相手様側の心の中身を読み解く段階になります。\n最後にお相手と連絡を取ったのはいつ頃ですか？" },
                     { type: "親身", text: "今の結果を聞いてみて、どう感じたかな？☺️💭\n「当たってる！」と思う部分はありましたか？🪄\n\n次は一番気になる、お相手様の「本心」を覗いてみましょう！\n最近のお相手との距離感についても詳しく教えてもらえるかな？✨" },
@@ -117,13 +116,13 @@
             },
             {
                 id: 5,
-                icon: "layers", // タロットカードを模倣したアイコンに変更
-                iconColor: "text-purple-500",
+                emoji: "🪄",
+                iconColor: "bg-purple-50 text-purple-600",
                 title: "2回目鑑定（STEP2〜3）",
-                point: "相手の本音と、「どう動けばうまくいくか」を具体的に教えます。",
-                good: "状況 → 相手の気持ち → これからの流れ、の順で一歩ずつ進める",
-                bad: "悪い結果だけ伝えて、どうすればいいか教えない",
-                advice: "過去・現在・未来と分けて送ると、お客様の満足度が上がりやすくなります。",
+                point: "相手の本音と、「これからどう動けばいいか」を具体的に教えます。",
+                good: "状況 → 相手の気持ち → これからの流れ、の順で一歩ずつ話す",
+                bad: "悪い結果だけ伝えて、解決策を教えない",
+                advice: "過去・現在・未来と分けて伝えると、満足度が上がりやすくなります。",
                 variants: [
                     { type: "標準", text: "お相手様の今の本音を視ました。\n今は少し迷いがあるようですが、あなたへの情は残っています。\n\n来週あたりに一度、軽い内容で連絡を入れてみると流れが変わりますよ。" },
                     { type: "親身", text: "お待たせしました✨\nお相手様、今はちょっと考え込みたい時期みたい💭\nでも嫌いになったわけじゃないから安心してね☺️\n\nあと3日待ってからLINEしてみて。きっと良い反応が来ますよ🪄🌿" },
@@ -132,28 +131,28 @@
             },
             {
                 id: 6,
-                icon: "moon",
-                iconColor: "text-orange-500",
+                emoji: "🌙",
+                iconColor: "bg-orange-50 text-orange-500",
                 title: "締めの言葉",
-                point: "お礼を伝え、次に相談するタイミングを提案して、次へのきっかけを作ります。",
-                good: "感謝とともに、「次は〇日後くらいに視てみましょう」と伝える",
+                point: "お礼を伝え、次に相談するタイミングを伝えて、次へのきっかけを作ります。",
+                good: "感謝とともに、「次は〇日後くらいに様子を視ましょう」と誘う",
                 bad: "「ありがとうございました」だけで終わる",
-                advice: "「いつ頃に変化があるか」を数字で伝えると、通院のように納得感が上がります。",
+                advice: "「いつ頃に変化があるか」を数字で伝えると、また相談したくなります。",
                 variants: [
-                    { type: "標準", text: "本日はありがとうございました。\n恋愛の流れは時間経過で変化します。\n\n今回の流れだと〇〇頃に動きが出る予感です。その頃にまた状況を視させてくださいね。" },
+                    { type: "標準", text: "本日はありがとうございました。\n恋愛の流れは時間が経つと変わります。\n\n今回の流れだと〇〇頃に動きが出る予感です。その頃にまた状況を視させてくださいね。" },
                     { type: "親身", text: "今日はたくさんお話しできて良かったです🥰\n\n〇〇頃にまた流れが大きく変わるので、その頃にまたお話ししましょう✨\nもし途中で不安になったら、いつでも頼ってくださいね🌷" },
                     { type: "誠実", text: "本日は誠にありがとうございました。\n運気は循環しております。\n\n状況が動き始めるのは10日前後と予測されますので、その際に再び推移を確認し、次なる一手を見極めましょう。応援しております。" }
                 ]
             },
             {
                 id: 7,
-                icon: "heart",
-                iconColor: "text-rose-500",
+                emoji: "💖",
+                iconColor: "bg-rose-50 text-rose-500",
                 title: "アフターフォロー",
-                point: "1〜3日後にメッセージを送り、その後の様子を伺います。売り込み感がないように注意します。",
-                good: "名前を呼び、さりげなく現状を伺う（占いの勧誘はしない）",
-                bad: "「占いしませんか？」と直接営業をかける",
-                advice: "お客様が自分から動けるように、背中を優しく押してあげることが大切です。",
+                point: "数日後にメッセージを送り、様子を伺います。売り込みすぎないのがコツです。",
+                good: "名前を呼び、さりげなく最近の様子を聞く",
+                bad: "「占いしませんか？」と直球で営業する",
+                advice: "お客様の背中を優しく押してあげるような気持ちで送りましょう。",
                 variants: [
                     { type: "標準", text: "〇〇様、こんにちは。先日はありがとうございました。\nその後、お気持ちや状況に変化はありましたか？\n\n何か小さな変化でも、また一緒に視ていけたらと思っています。" },
                     { type: "親身", text: "〇〇様、こんにちは🌿\nあの後、何か状況に変化はあったかな？って気になっていました🥲\n\n小さなことでも、気になる出来事があればいつでも近況を聞かせてね🌷" },
@@ -166,7 +165,7 @@
 
         function renderApp() {
             const flowStepsContainer = document.getElementById('flow-steps');
-            flowStepsContainer.innerHTML = ''; 
+            flowStepsContainer.innerHTML = '';
             steps.forEach((step, idx) => {
                 const stepId = idx + 1;
                 let html = `<div class="flex-shrink-0 flex items-center snap-center"><a href="#step-${stepId}" class="px-4 py-2 rounded-xl text-[11px] whitespace-nowrap bg-indigo-600 text-white font-bold shadow-md">${step}</a>`;
@@ -181,8 +180,8 @@
                 const sectionHtml = `
                     <div id="step-${step.id}" class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden scroll-mt-24">
                         <div class="flex items-center gap-4 p-5 border-b border-slate-50 bg-slate-50/50">
-                            <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 ${step.iconColor}">
-                                <i data-lucide="${step.icon}" class="w-6 h-6"></i>
+                            <div class="w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm border border-slate-100 text-2xl ${step.iconColor}">
+                                ${step.emoji}
                             </div>
                             <h2 class="text-lg font-bold text-slate-800">${step.title}</h2>
                         </div>
@@ -213,7 +212,7 @@
                             <div class="mt-4 p-4 bg-amber-50/50 rounded-2xl border border-amber-100/50">
                                 <div class="flex items-center gap-2 mb-2 text-amber-600">
                                     <i data-lucide="lightbulb" class="w-4 h-4"></i>
-                                    <span class="text-[10px] font-black uppercase tracking-widest">ヒント</span>
+                                    <span class="text-[10px] font-black uppercase tracking-widest">アドバイス</span>
                                 </div>
                                 <p class="text-[12px] text-slate-600 leading-relaxed">${step.advice}</p>
                             </div>
@@ -227,7 +226,7 @@
 
         function renderVariant(stepId, variant) {
             return `
-                <div class="relative border border-slate-100 rounded-2xl bg-slate-50/30 overflow-hidden animate-in fade-in duration-300">
+                <div class="relative border border-slate-100 rounded-2xl bg-slate-50/30 overflow-hidden">
                     <div class="p-4 text-[13px] text-slate-700 leading-relaxed whitespace-pre-wrap">${variant.text}</div>
                     <button onclick="copyText(this, \`${variant.text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\n/g, '\\n')}\`)" class="w-full flex items-center justify-center gap-2 py-3 bg-white border-t border-slate-100 text-indigo-600 font-bold text-xs active:bg-indigo-50">
                         <i data-lucide="copy" class="w-4 h-4"></i>
@@ -243,7 +242,6 @@
             tabs.forEach((t, i) => i !== variantIdx && t.classList.add('text-slate-400'));
             const step = flowData.find(s => s.id === stepId);
             document.getElementById(`variant-content-${stepId}`).innerHTML = renderVariant(stepId, step.variants[variantIdx]);
-            // !!! タブを切り替えた直後にも lucide.createIcons() を呼び出してアイコンを表示させる !!!
             lucide.createIcons();
         }
 
@@ -281,15 +279,15 @@
             <div class="space-y-5 text-sm text-slate-600 leading-relaxed">
                 <div class="flex gap-3">
                     <div class="bg-indigo-100 text-indigo-600 p-1 rounded-md h-fit"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
-                    <p><b>GOOD/BADの指針を確認</b>し、質の高い鑑定を目指しましょう。</p>
+                    <p><b>良い例・悪い例を確認</b>して、鑑定の参考にしてください。</p>
                 </div>
                 <div class="flex gap-3">
                     <div class="bg-indigo-100 text-indigo-600 p-1 rounded-md h-fit"><i data-lucide="users" class="w-4 h-4"></i></div>
-                    <p><b>タブ選択：</b> 鑑定士さんのキャラに合わせて「標準・親身・誠実」を選べます。</p>
+                    <p><b>タブ選択：</b> キャラに合わせて「標準・親身・誠実」を選べます。</p>
                 </div>
                 <div class="flex gap-3">
                     <div class="bg-indigo-100 text-indigo-600 p-1 rounded-md h-fit"><i data-lucide="copy" class="w-4 h-4"></i></div>
-                    <p><b>コピーボタンで例文を保存</b>し、チャット画面に貼り付けて使用できます。</p>
+                    <p><b>コピーボタン：</b> 押すだけで例文をコピーできます。</p>
                 </div>
             </div>
             <button onclick="toggleHelp()" class="w-full mt-8 py-3 bg-indigo-600 text-white rounded-xl font-bold">了解しました</button>
