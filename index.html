@@ -121,4 +121,177 @@
                 title: "2回目鑑定（STEP2〜3）",
                 point: "相手の本心、そして「どう行動すれば実現できるか」を具体的に伝えます。",
                 good: "現状→相手の気持ち→今後の展開の順で段階的に進める",
-                bad: "悪い結果だけ伝え、解決策を出
+                bad: "悪い結果だけ伝え、解決策を出さない",
+                advice: "過去・現在・未来と区切って送信することで、信頼とリピートに繋がります。",
+                variants: [
+                    { type: "標準", text: "お相手様の今の本音を視ました。\n今は少し迷いがあるようですが、あなたへの情は残っています。\n\n来週あたりに一度、軽い内容で連絡を入れてみると流れが変わりますよ。" },
+                    { type: "親身", text: "お待たせしました✨\nお相手様、今はちょっと考え込みたい時期みたい💭\nでも嫌いになったわけじゃないから安心してね☺️\n\nあと3日待ってからLINEしてみて。きっと良い反応が来ますよ🪄🌿" },
+                    { type: "誠実", text: "お待たせいたしました。\nお相手様の深層を読み解いたところ、あなた様を大切な存在だと認識されていますが、〇〇という事情で一歩踏み出せずにいらっしゃるようです。\n\n今取るべき最善の行動は△△です。一歩ずつ、確実に状況を好転させていきましょう。" }
+                ]
+            },
+            {
+                id: 6,
+                emoji: "🌙",
+                iconColor: "bg-orange-50 text-orange-500",
+                title: "締めの言葉",
+                point: "当日の振り返りと次回時期を提示し、次へのきっかけを作ります。",
+                good: "感謝と共に、次回予約の目安（〇日後など）を伝える",
+                bad: "感謝のみで終わる。次回予約に触れない",
+                advice: "「変化が出やすい時期」を数字で伝えると、納得感と安心感が増します。",
+                variants: [
+                    { type: "標準", text: "本日はありがとうございました。\n恋愛の流れは時間経過で変化します。\n\n今回の流れだと〇〇頃に動きが出る予感です。その頃にまた状況を視させてくださいね。" },
+                    { type: "親身", text: "今日はたくさんお話しできて良かったです🥰\n\n〇〇頃にまた流れが大きく変わるので、その頃にまたお話ししましょう✨\nもし途中で不安になったら、いつでも頼ってくださいね🌷" },
+                    { type: "誠実", text: "本日は誠にありがとうございました。\n運気は循環しております。\n\n状況が動き始めるのは10日前後と予測されますので、その際に再び推移を確認し、次なる一手を見極めましょう。応援しております。" }
+                ]
+            },
+            {
+                id: 7,
+                emoji: "🤝",
+                iconColor: "bg-rose-50 text-rose-500",
+                title: "アフターフォロー",
+                point: "翌日〜3日以内に送信。締めの言葉で約束した「経過観察」を行います。",
+                good: "名前を呼び、さりげなく現状を伺う（鑑定打診はしない）",
+                bad: "「鑑定しませんか？」と直接的な営業をかける",
+                advice: "お客様が自分から話しやすいように、優しく背中を押してあげることが大事です。",
+                variants: [
+                    { type: "標準", text: "〇〇様、こんにちは。先日はありがとうございました。\nその後、お気持ちや状況に変化はありましたか？\n\n何か小さな変化でも、また一緒に視ていけたらと思っています。" },
+                    { type: "親身", text: "〇〇様、こんにちは🌿\nあの後、何か状況に変化はあったかな？って気になっていました🥲\n\n小さなことでも、気になる出来事があればいつでも近況を聞かせてね🌷" },
+                    { type: "誠実", text: "〇〇様、その後のご様子はいかがでしょうか。\n鑑定でお伝えしたことが、少しでも心の安らぎとなっていれば幸いです。\n\nもし新しい動きや不安が生じた際は、いつでもここを頼ってくださいね。" }
+                ]
+            }
+        ];
+
+        const steps = ['アポメ', 'ヒアリング', '初回鑑定', '鑑定後ヒア', '2回目鑑定', '締め', 'アフター'];
+
+        function renderApp() {
+            const flowStepsContainer = document.getElementById('flow-steps');
+            flowStepsContainer.innerHTML = '';
+            steps.forEach((step, idx) => {
+                const stepId = idx + 1;
+                let html = `<div class="flex-shrink-0 flex items-center snap-center"><a href="#step-${stepId}" class="px-5 py-3 rounded-2xl text-[12px] whitespace-nowrap bg-indigo-600 text-white font-bold shadow-md active:scale-95 transition-transform">${step}</a>`;
+                if (idx < steps.length - 1) html += `<i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 mx-1"></i>`;
+                html += `</div>`;
+                flowStepsContainer.insertAdjacentHTML('beforeend', html);
+            });
+
+            const flowDetailsContainer = document.getElementById('flow-details');
+            flowDetailsContainer.innerHTML = '';
+            flowData.forEach(step => {
+                const sectionHtml = `
+                    <div id="step-${step.id}" class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden scroll-mt-6">
+                        <div class="flex items-center gap-4 p-6 border-b border-slate-50 bg-slate-50/50">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-2xl shadow-sm border border-slate-100 text-3xl ${step.iconColor}">
+                                ${step.emoji}
+                            </div>
+                            <h2 class="text-xl font-bold text-slate-800">${step.title}</h2>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <div class="bg-indigo-50/40 rounded-2xl p-5 border border-indigo-100/30">
+                                <p class="text-[14px] text-slate-600 leading-relaxed font-medium"><span class="text-indigo-500 mr-1 font-bold">●</span>${step.point}</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 font-bold">
+                                <div class="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50 text-center">
+                                    <div class="text-[10px] text-emerald-600 mb-1 tracking-tighter uppercase">良い例</div>
+                                    <p class="text-[11px] text-slate-700 leading-tight">${step.good}</p>
+                                </div>
+                                <div class="bg-rose-50/50 p-4 rounded-2xl border border-rose-100/50 text-center">
+                                    <div class="text-[10px] text-rose-600 mb-1 tracking-tighter uppercase">悪い例</div>
+                                    <p class="text-[11px] text-slate-700 leading-tight">${step.bad}</p>
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <div class="flex border-b border-slate-100 mb-5">
+                                    ${step.variants.map((v, i) => `
+                                        <button onclick="switchTab(this, ${step.id}, ${i})" class="flex-1 py-3 text-sm transition-all ${i === 0 ? 'tab-active' : 'text-slate-400'}">
+                                            ${v.type}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                <div id="variant-content-${step.id}">${renderVariant(step.id, step.variants[0])}</div>
+                            </div>
+                            <div class="mt-4 p-5 bg-amber-50/50 rounded-2xl border border-amber-100/50">
+                                <div class="flex items-center gap-2 mb-2 text-amber-600">
+                                    <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                                    <span class="text-[10px] font-black uppercase tracking-widest">アドバイス</span>
+                                </div>
+                                <p class="text-[13px] text-slate-600 leading-relaxed">${step.advice}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                flowDetailsContainer.insertAdjacentHTML('beforeend', sectionHtml);
+            });
+            lucide.createIcons();
+        }
+
+        function renderVariant(stepId, variant) {
+            return `
+                <div class="relative border border-slate-100 rounded-3xl bg-slate-50/30 overflow-hidden transition-all">
+                    <div class="p-5 text-[14px] text-slate-700 leading-relaxed whitespace-pre-wrap">${variant.text}</div>
+                    <button onclick="copyText(this, \`${variant.text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\n/g, '\\n')}\`)" class="w-full flex items-center justify-center gap-3 py-4 bg-white border-t border-slate-100 text-indigo-600 font-bold text-sm active:bg-indigo-50">
+                        <i data-lucide="copy" class="w-5 h-5"></i>
+                        <span>例文をコピーする</span>
+                    </button>
+                </div>
+            `;
+        }
+
+        function switchTab(btn, stepId, variantIdx) {
+            const tabs = btn.parentElement.querySelectorAll('button');
+            tabs.forEach((t, i) => i === variantIdx ? t.classList.add('tab-active') : t.classList.remove('tab-active', 'text-slate-400'));
+            tabs.forEach((t, i) => i !== variantIdx && t.classList.add('text-slate-400'));
+            const step = flowData.find(s => s.id === stepId);
+            document.getElementById(`variant-content-${stepId}`).innerHTML = renderVariant(stepId, step.variants[variantIdx]);
+            lucide.createIcons();
+        }
+
+        function copyText(btnElement, text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            const originalContent = btnElement.innerHTML;
+            btnElement.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i><span>コピー完了！</span>`;
+            btnElement.classList.add('bg-indigo-600', 'text-white');
+            lucide.createIcons();
+            setTimeout(() => {
+                btnElement.innerHTML = originalContent;
+                btnElement.classList.remove('bg-indigo-600', 'text-white');
+                lucide.createIcons();
+            }, 2000);
+        }
+
+        function toggleHelp() {
+            document.getElementById('help-modal').classList.toggle('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderApp);
+    </script>
+
+    <div id="help-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
+        <div class="bg-white rounded-[2rem] w-full max-w-sm overflow-hidden shadow-2xl p-8">
+            <div class="flex justify-between items-center mb-6 text-slate-800">
+                <h3 class="text-xl font-bold">使い方ガイド</h3>
+                <button onclick="toggleHelp()"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="space-y-6 text-[14px] text-slate-600 leading-relaxed">
+                <div class="flex gap-4">
+                    <div class="bg-indigo-100 text-indigo-600 p-2 rounded-xl h-fit"><i data-lucide="check-circle-2" class="w-5 h-5"></i></div>
+                    <p><b>指針の確認：</b>鑑定の質を高めるポイントをまとめています。</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="bg-indigo-100 text-indigo-600 p-2 rounded-xl h-fit"><i data-lucide="users" class="w-5 h-5"></i></div>
+                    <p><b>キャラ別例文：</b>タブを切り替えて、好みの例文を選べます。</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="bg-indigo-100 text-indigo-600 p-2 rounded-xl h-fit"><i data-lucide="copy" class="w-5 h-5"></i></div>
+                    <p><b>ワンタップコピー：</b>ボタンを押してチャットに貼り付けるだけ！</p>
+                </div>
+            </div>
+            <button onclick="toggleHelp()" class="w-full mt-10 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-200 active:scale-95 transition-transform">了解しました</button>
+        </div>
+    </div>
+</body>
+</html>
