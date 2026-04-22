@@ -9,7 +9,6 @@
     <style>
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .copied { background-color: #eef2ff !important; color: #4f46e5 !important; }
         html { scroll-behavior: smooth; }
         .tab-active { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: bold; }
     </style>
@@ -62,7 +61,7 @@
                 point: "期待値を高め、スムーズにヒアリングへ移行するための接点です。",
                 good: "即レスを徹底し、悩みに寄り添う一言を添える",
                 bad: "事務的すぎて冷たい、返信が遅い",
-                advice: "短文ラリーを意識！心理적ハードルを下げるのがコツです。",
+                advice: "短文ラリーを意識！心理的ハードルを下げるのがコツです。",
                 variants: [
                     { type: "標準", text: "ご相談ありがとうございます。\nお気持ち、しっかりと受け止めました。\n\n精一杯鑑定させていただきますので、まずはいくつかお話を伺わせてくださいね。" },
                     { type: "親身", text: "ご依頼ありがとうございます！✨\nお力になれるご縁をいただけて嬉しいです🥰\n\n心を込めて視させていただきますので、まずはリラックスしてお話聞かせてくださいね🌿🪄" },
@@ -86,7 +85,7 @@
             },
             {
                 id: 3,
-                emoji: "🔮", // 水晶
+                emoji: "🔮",
                 iconColor: "bg-amber-50 text-amber-600",
                 title: "初回鑑定（STEP1）",
                 point: "まずは「現状」のみを鑑定。全て話さず信頼を築き、次に繋げます。",
@@ -116,7 +115,7 @@
             },
             {
                 id: 5,
-                emoji: "🪄", // 魔法の杖
+                emoji: "🪄",
                 iconColor: "bg-purple-50 text-purple-600",
                 title: "2回目鑑定（STEP2〜3）",
                 point: "相手の本心、そして「どう行動すれば実現できるか」を具体的に伝えます。",
@@ -125,7 +124,7 @@
                 advice: "過去・現在・未来と区切って送信することで、信頼とリピートに繋がります。",
                 variants: [
                     { type: "標準", text: "お相手様の今の本音を視ました。\n今は少し迷いがあるようですが、あなたへの情は残っています。\n\n来週あたりに一度、軽い内容で連絡を入れてみると流れが変わりますよ。" },
-                    { type: "親身", text: "お待たせしました✨\nお相手様、今はちょっと考え込みたい時期みたい💭\nでも嫌いになったわけじゃないから安心してね☺️\n\nあと3日待ってからLINEしてみて。きっと良い反応が来ますよ🪄🌿" },
+                    { type: "親身", text: "お待たせしました✨\nお相手様、今はちょっと考え込みたい時期みたい💭\n\nでも嫌いになったわけじゃないから安心してね☺️\nあと3日待ってからLINEしてみて。きっと良い反応が来ますよ🪄🌿" },
                     { type: "誠実", text: "お待たせいたしました。\nお相手様の深層を読み解いたところ、あなた様を大切な存在だと認識されていますが、〇〇という事情で一歩踏み出せずにいらっしゃるようです。\n\n今取るべき最善の行動は△△です。一歩ずつ、確実に状況を好転させていきましょう。" }
                 ]
             },
@@ -178,7 +177,7 @@
             flowDetailsContainer.innerHTML = '';
             flowData.forEach(step => {
                 const sectionHtml = `
-                    <div id="step-${step.id}" class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden scroll-mt-6">
+                    <div id="step-${step.id}" class="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden scroll-mt-6">
                         <div class="flex items-center gap-4 p-6 border-b border-slate-50 bg-slate-50/50">
                             <div class="w-14 h-14 flex items-center justify-center rounded-2xl shadow-sm border border-slate-100 text-3xl ${step.iconColor}">
                                 ${step.emoji}
