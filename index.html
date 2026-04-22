@@ -53,7 +53,7 @@
     </main>
 
     <script>
-        // アイコン名を占い感のあるものへ変更 & 難しい表現を排除
+        // アイコン名と表現（難しい言葉）を修正
         const flowData = [
             {
                 id: 1,
@@ -75,7 +75,7 @@
                 icon: "message-square",
                 iconColor: "text-indigo-500",
                 title: "初回ヒアリング",
-                point: "性格や恋愛の傾向を知ることで、その人に合ったアドバイスができ、離脱を防げます。",
+                point: "性格や恋愛の傾向を知ることで、その人に合ったアドバイスができ、途中でやめてしまうのを防げます。",
                 good: "状況や悩みを整理しやすいように、具体的な質問をする",
                 bad: "バラバラに何度も質問して、相手に負担をかける",
                 advice: "質問をまとめて聞くことで、お客様が返信する手間を減らします。",
@@ -87,13 +87,13 @@
             },
             {
                 id: 3,
-                icon: "sparkles",
+                icon: "crystal-ball", // 水晶玉アイコンに変更
                 iconColor: "text-amber-500",
                 title: "初回鑑定（STEP1）",
-                point: "まずは「今の状況」だけを伝えます。小出しにすることで信頼を築き、次に繋げます。",
+                point: "まずは「今の状況」だけを伝えます。小出しにすることで信頼を得て、次に繋げます。",
                 good: "今の状況を深掘りし、「相手の気持ち」を知りたくなるように伝える",
                 bad: "相手の気持ちまで一気に全部話してしまう",
-                advice: "有料メッセージでは150〜300文字程度を目安に。短すぎず、丁寧な印象を心がけましょう。",
+                advice: "有料メッセージでは句読点や絵文字を控えめに。ポイント内鑑定（短文すぎる鑑定）は避け、150〜300文字程度を目安にしましょう。",
                 variants: [
                     { type: "標準", text: "情報をありがとうございます。\n今から鑑定に入りますので、リラックスしてお待ちくださいね。\n\n鑑定の結果、あなた様は〇〇な性質をお持ちです。そのため今は△△な状況で、お辛い時期ですね。\n\n次は、お相手様の今の本音を深く読み解きます。続けてもよろしいですか？" },
                     { type: "親身", text: "教えてくれてありがとう✨\n今から鑑定に入りますね🪄少しの間、肩の力を抜いて待っていてください🌿\n\n鑑定したところ、あなた様は本当に〇〇な優しい方だと出ています。だからこそ、今の△△な状況は胸が痛みますよね…🥲\n\n次はお相手様の「本心」を覗いてみましょうか？✨" },
@@ -117,7 +117,7 @@
             },
             {
                 id: 5,
-                icon: "playing-cards",
+                icon: "layers", // タロットカードを模倣したアイコンに変更
                 iconColor: "text-purple-500",
                 title: "2回目鑑定（STEP2〜3）",
                 point: "相手の本音と、「どう動けばうまくいくか」を具体的に教えます。",
@@ -138,9 +138,9 @@
                 point: "お礼を伝え、次に相談するタイミングを提案して、次へのきっかけを作ります。",
                 good: "感謝とともに、「次は〇日後くらいに視てみましょう」と伝える",
                 bad: "「ありがとうございました」だけで終わる",
-                advice: "「いつ頃に変化があるか」を数字で伝えると、お客様も納得して再来しやすくなります。",
+                advice: "「いつ頃に変化があるか」を数字で伝えると、通院のように納得感が上がります。",
                 variants: [
-                    { type: "標準", text: "本日はありがとうございました。\n恋愛の流れは時間が経つと変わります。\n\n今回の流れだと〇〇頃に動きが出る予感です。その頃にまた状況を視かせてくださいね。" },
+                    { type: "標準", text: "本日はありがとうございました。\n恋愛の流れは時間経過で変化します。\n\n今回の流れだと〇〇頃に動きが出る予感です。その頃にまた状況を視させてくださいね。" },
                     { type: "親身", text: "今日はたくさんお話しできて良かったです🥰\n\n〇〇頃にまた流れが大きく変わるので、その頃にまたお話ししましょう✨\nもし途中で不安になったら、いつでも頼ってくださいね🌷" },
                     { type: "誠実", text: "本日は誠にありがとうございました。\n運気は循環しております。\n\n状況が動き始めるのは10日前後と予測されますので、その際に再び推移を確認し、次なる一手を見極めましょう。応援しております。" }
                 ]
@@ -150,8 +150,8 @@
                 icon: "heart",
                 iconColor: "text-rose-500",
                 title: "アフターフォロー",
-                point: "1〜3日後にメッセージを送り、その後の様子を伺います。",
-                good: "名前を呼び、さりげなく様子を聞く（占いの勧誘はしない）",
+                point: "1〜3日後にメッセージを送り、その後の様子を伺います。売り込み感がないように注意します。",
+                good: "名前を呼び、さりげなく現状を伺う（占いの勧誘はしない）",
                 bad: "「占いしませんか？」と直接営業をかける",
                 advice: "お客様が自分から動けるように、背中を優しく押してあげることが大切です。",
                 variants: [
@@ -166,7 +166,7 @@
 
         function renderApp() {
             const flowStepsContainer = document.getElementById('flow-steps');
-            flowStepsContainer.innerHTML = '';
+            flowStepsContainer.innerHTML = ''; 
             steps.forEach((step, idx) => {
                 const stepId = idx + 1;
                 let html = `<div class="flex-shrink-0 flex items-center snap-center"><a href="#step-${stepId}" class="px-4 py-2 rounded-xl text-[11px] whitespace-nowrap bg-indigo-600 text-white font-bold shadow-md">${step}</a>`;
@@ -213,7 +213,7 @@
                             <div class="mt-4 p-4 bg-amber-50/50 rounded-2xl border border-amber-100/50">
                                 <div class="flex items-center gap-2 mb-2 text-amber-600">
                                     <i data-lucide="lightbulb" class="w-4 h-4"></i>
-                                    <span class="text-[10px] font-black uppercase tracking-widest">アドバイス</span>
+                                    <span class="text-[10px] font-black uppercase tracking-widest">ヒント</span>
                                 </div>
                                 <p class="text-[12px] text-slate-600 leading-relaxed">${step.advice}</p>
                             </div>
@@ -227,7 +227,7 @@
 
         function renderVariant(stepId, variant) {
             return `
-                <div class="relative border border-slate-100 rounded-2xl bg-slate-50/30 overflow-hidden">
+                <div class="relative border border-slate-100 rounded-2xl bg-slate-50/30 overflow-hidden animate-in fade-in duration-300">
                     <div class="p-4 text-[13px] text-slate-700 leading-relaxed whitespace-pre-wrap">${variant.text}</div>
                     <button onclick="copyText(this, \`${variant.text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\n/g, '\\n')}\`)" class="w-full flex items-center justify-center gap-2 py-3 bg-white border-t border-slate-100 text-indigo-600 font-bold text-xs active:bg-indigo-50">
                         <i data-lucide="copy" class="w-4 h-4"></i>
@@ -243,6 +243,7 @@
             tabs.forEach((t, i) => i !== variantIdx && t.classList.add('text-slate-400'));
             const step = flowData.find(s => s.id === stepId);
             document.getElementById(`variant-content-${stepId}`).innerHTML = renderVariant(stepId, step.variants[variantIdx]);
+            // !!! タブを切り替えた直後にも lucide.createIcons() を呼び出してアイコンを表示させる !!!
             lucide.createIcons();
         }
 
@@ -280,15 +281,15 @@
             <div class="space-y-5 text-sm text-slate-600 leading-relaxed">
                 <div class="flex gap-3">
                     <div class="bg-indigo-100 text-indigo-600 p-1 rounded-md h-fit"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
-                    <p><b>良い例・悪い例を確認</b>して、喜ばれる占いをしましょう。</p>
+                    <p><b>GOOD/BADの指針を確認</b>し、質の高い鑑定を目指しましょう。</p>
                 </div>
                 <div class="flex gap-3">
                     <div class="bg-indigo-100 text-indigo-600 p-1 rounded-md h-fit"><i data-lucide="users" class="w-4 h-4"></i></div>
-                    <p><b>キャラ切り替え：</b> 「標準・親身・誠実」から自分に合う例文を選べます。</p>
+                    <p><b>タブ選択：</b> 鑑定士さんのキャラに合わせて「標準・親身・誠実」を選べます。</p>
                 </div>
                 <div class="flex gap-3">
                     <div class="bg-indigo-100 text-indigo-600 p-1 rounded-md h-fit"><i data-lucide="copy" class="w-4 h-4"></i></div>
-                    <p><b>コピー機能：</b> ボタンを押して例文をコピーし、そのまま貼り付けて使えます。</p>
+                    <p><b>コピーボタンで例文を保存</b>し、チャット画面に貼り付けて使用できます。</p>
                 </div>
             </div>
             <button onclick="toggleHelp()" class="w-full mt-8 py-3 bg-indigo-600 text-white rounded-xl font-bold">了解しました</button>
